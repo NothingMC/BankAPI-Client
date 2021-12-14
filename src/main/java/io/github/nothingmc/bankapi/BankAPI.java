@@ -18,10 +18,10 @@ public class BankAPI {
      */
     public BankAPI(@Nonnull String host, int port) {
         ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port)
-                .usePlaintext()
                 .build();
 
-        asyncStub = AccountantGrpc.newFutureStub(channel);
+        asyncStub = AccountantGrpc
+                .newFutureStub(channel);
     }
 
     public ListenableFuture<Account.OpenResponse> createAccount(@Nonnull String accountId) {
