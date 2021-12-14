@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "io.github.nothingmc.bankapi"
-version = "1.0-SNAPSHOT"
+version = "1.0.0"
 
 repositories {
     mavenCentral()
