@@ -69,6 +69,6 @@ tasks.test {
 }
 
 tasks.withType<JavaCompile>() {
-    sourceCompatibility = JavaVersion.VERSION_17.toString()
+    sourceCompatibility = JavaVersion.VERSION_1_8.toString()
     targetCompatibility = sourceCompatibility
 }
