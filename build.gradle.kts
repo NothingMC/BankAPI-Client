@@ -8,10 +8,11 @@ import com.google.protobuf.gradle.protoc
 plugins {
     `java-library`
     id("com.google.protobuf") version "0.8.18"
+    `maven-publish`
 }
 
 group = "io.github.nothingmc.bankapi"
-version = "1.0.1"
+version = "1.0.2"
 
 repositories {
     mavenCentral()
@@ -64,11 +65,23 @@ protobuf {
 }
 
 
-tasks.test {
-    useJUnit()
-}
-
 tasks.withType<JavaCompile>() {
     sourceCompatibility = JavaVersion.VERSION_1_8.toString()
     targetCompatibility = sourceCompatibility
+}
+
+
+val sourcesJar by tasks.registering(Jar::class) {
+    from(sourceSets["main"].allSource)
+    archiveClassifier.set("sources")
+}
+
+publishing {
+    publications {
+        register<MavenPublication>("BankAPI-Client") {
+            artifactId = "BankAPI-Client"
+            from(components["java"])
+            artifact(sourcesJar)
+        }
+    }
 }
