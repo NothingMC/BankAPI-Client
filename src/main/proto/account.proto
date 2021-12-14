@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package nothingmc.account;
+option java_package = "io.github.nothingmc.account";
+
+message OpenRequest {
+  string account_id = 1;
+}
+
+message OpenResponse {
+  double balance = 1;
+}
+
+message GetBalanceRequest {
+  string account_id = 1;
+}
+
+message GetBalanceResponse {
+  double balance = 1;
+}
+
+message DepositRequest {
+  string account_id = 1;
+  double amount = 2;
+}
+
+message DepositResponse {
+  double balance = 1;
+}
+
+message WithdrawRequest {
+  string account_id = 1;
+  double amount = 2;
+}
+
+message WithdrawResponse {
+  double balance = 1;
+}
+
+message SendRequest {
+  string from_account_id = 1;
+  string to_account_id = 2;
+  double amount = 3;
+}
+
+message SendResponse {
+  double from_balance = 1;
+  double to_balance = 2;
+}
+
+service Accountant {
+  rpc Open(OpenRequest) returns (OpenResponse);
+  rpc GetBalance(GetBalanceRequest) returns (GetBalanceResponse);
+  rpc Deposit(DepositRequest) returns (DepositResponse);
+  rpc Withdraw(WithdrawRequest) returns (WithdrawResponse);
+  rpc Send(SendRequest) returns (SendResponse);
+}

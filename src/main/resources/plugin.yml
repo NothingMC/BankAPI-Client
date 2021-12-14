@@ -1,8 +1,0 @@
-name: ExamplePlugin
-author: NothingMC
-main: io.github.nothingmc.exampleplugin.Loader
-version: 1.0.0
-api: 1.0.13 # Cloudburst Nukkit version, do not change this!
-
-depend:
-  - KotlinLib

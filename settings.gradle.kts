@@ -1,3 +1,3 @@
 
-rootProject.name = "ExamplePlugin"
+rootProject.name = "BankAPI-Client"
 
