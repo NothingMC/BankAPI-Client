@@ -8,18 +8,19 @@ import com.google.protobuf.gradle.protoc
 plugins {
     `java-library`
     id("com.google.protobuf") version "0.8.18"
+    `maven-publish`
 }
 
 group = "io.github.nothingmc.bankapi"
-version = "1.0.0"
+version = "1.0.2"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation(group = "io.grpc", name = "grpc-protobuf", version = "1.42.1")
-    implementation(group = "io.grpc", name = "grpc-stub", version = "1.42.1")
+    implementation(group = "io.grpc", name = "grpc-protobuf", version = "1.43.0")
+    implementation(group = "io.grpc", name = "grpc-stub", version = "1.43.0")
 
     if (JavaVersion.current().isJava9Compatible) {
         // Workaround for @javax.annotation.Generated
@@ -42,7 +43,7 @@ sourceSets{
 protobuf {
     protoc {
         // The artifact spec for the Protobuf Compiler
-        artifact = "com.google.protobuf:protoc:3.17.3"
+        artifact = "com.google.protobuf:protoc:3.19.1"
     }
 
     plugins {
@@ -50,7 +51,7 @@ protobuf {
         // the identifier, which can be referred to in the "plugins"
         // container of the "generateProtoTasks" closure.
         id("grpc") {
-            artifact = "io.grpc:protoc-gen-grpc-java:1.39.0"
+            artifact = "io.grpc:protoc-gen-grpc-java:1.43.0"
         }
     }
     generateProtoTasks {
@@ -64,11 +65,23 @@ protobuf {
 }
 
 
-tasks.test {
-    useJUnit()
+tasks.withType<JavaCompile>() {
+    sourceCompatibility = JavaVersion.VERSION_1_8.toString()
+    targetCompatibility = sourceCompatibility
 }
 
-tasks.withType<JavaCompile>() {
-    sourceCompatibility = JavaVersion.VERSION_17.toString()
-    targetCompatibility = sourceCompatibility
+
+val sourcesJar by tasks.registering(Jar::class) {
+    from(sourceSets["main"].allSource)
+    archiveClassifier.set("sources")
+}
+
+publishing {
+    publications {
+        register<MavenPublication>("BankAPI-Client") {
+            artifactId = "BankAPI-Client"
+            from(components["java"])
+            artifact(sourcesJar)
+        }
+    }
 }
