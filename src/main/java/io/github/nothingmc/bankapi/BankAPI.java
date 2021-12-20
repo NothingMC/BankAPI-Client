@@ -70,6 +70,15 @@ public class BankAPI {
         );
     }
 
+    public ListenableFuture<Account.HasAccountResponse> hasAccount(@Nonnull String accountId) {
+        return asyncStub.hasAccount(
+                Account.HasAccountRequest
+                        .newBuilder()
+                        .setAccountId(accountId)
+                        .build()
+        );
+    }
+
     public ListenableFuture<Account.SendResponse> send(@Nonnull String fromAccountId, @Nonnull String toAccountId, long amount) {
         return send(fromAccountId, toAccountId, (double) amount);
     }

@@ -12,14 +12,14 @@ plugins {
 }
 
 group = "io.github.nothingmc.bankapi"
-version = "1.0.2"
+version = "1.1.0"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation(group = "io.grpc", name = "grpc-protobuf", version = "1.43.0")
+    api(group = "io.grpc", name = "grpc-protobuf", version = "1.43.0")
     implementation(group = "io.grpc", name = "grpc-stub", version = "1.43.0")
 
     if (JavaVersion.current().isJava9Compatible) {
