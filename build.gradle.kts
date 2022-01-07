@@ -20,7 +20,7 @@ repositories {
 
 dependencies {
     api(group = "io.grpc", name = "grpc-protobuf", version = "1.43.1")
-    implementation(group = "io.grpc", name = "grpc-stub", version = "1.43.1")
+    implementation(group = "io.grpc", name = "grpc-stub", version = "1.43.2")
 
     if (JavaVersion.current().isJava9Compatible) {
         // Workaround for @javax.annotation.Generated
