@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    api(group = "io.grpc", name = "grpc-protobuf", version = "1.48.1")
+    api(group = "io.grpc", name = "grpc-protobuf", version = "1.49.1")
     implementation(group = "io.grpc", name = "grpc-stub", version = "1.48.1")
 
     if (JavaVersion.current().isJava9Compatible) {
