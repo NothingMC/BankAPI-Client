@@ -7,7 +7,7 @@ import com.google.protobuf.gradle.protoc
 
 plugins {
     `java-library`
-    id("com.google.protobuf") version "0.8.19"
+    id("com.google.protobuf") version "0.9.0"
     `maven-publish`
 }
 
