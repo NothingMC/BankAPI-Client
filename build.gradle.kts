@@ -43,7 +43,7 @@ sourceSets{
 protobuf {
     protoc {
         // The artifact spec for the Protobuf Compiler
-        artifact = "com.google.protobuf:protoc:3.21.10"
+        artifact = "com.google.protobuf:protoc:3.21.11"
     }
 
     plugins {
